@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/QMasterPage.master" AutoEventWireup="true" CodeFile="friends.aspx.cs" Inherits="friends" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/QMasterPage.master" AutoEventWireup="true" CodeFile="Default.aspx.cs" Inherits="friends" %>
 <%@ MasterType VirtualPath="~/QMasterPage.master" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
