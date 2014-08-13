@@ -80,8 +80,7 @@
                 <asp:BoundField DataField="NumShares" HeaderText="Shares" />             
                 <asp:BoundField DataField="LastPrice" HeaderText="Last" DataFormatString="{0:C2}"/>
                 <asp:BoundField DataField="LastValue" HeaderText="Value" DataFormatString="{0:C2}"/>
-                <asp:BoundField DataField="LastPriceChange" HeaderText="Change" DataFormatString="{0:C2}"
-                    HtmlEncode="false"  />
+                <asp:BoundField DataField="LastPriceChange" HeaderText="Change" HtmlEncode="false" />
                 <asp:BoundField DataField="LastValChange" HeaderText="Day Value" />
                 <asp:BoundField DataField="UnrealizedGain" HeaderText="Unrealized<br/>Gain/Loss"
                     HtmlEncode="false" />                
@@ -96,13 +95,14 @@
         <asp:GridView ID="gvWatch" runat="server" AutoGenerateColumns="false"
             HeaderStyle-CssClass="header" RowStyle-CssClass="row"
             AlternatingRowStyle-CssClass="alternating" FooterStyle-CssClass="footer"
-            ShowFooter="false" RowStyle-HorizontalAlign="Center" Visible="<%# CurrUser.ShowWatchlist %>" >
+            ShowFooter="false" RowStyle-HorizontalAlign="Center" Visible="<%# CurrUser.ShowWatchlist %>" OnRowDataBound="gvWatch_RowDataBound" >
             <Columns>
-                <asp:BoundField DataField="DateAdded" HeaderText="Date Added" />
+                <asp:BoundField DataField="DateAdded" HeaderText="Date Added" HtmlEncode="false"/>
                 <asp:BoundField DataField="Symbol" HeaderText="Symbol" />
                 <asp:BoundField DataField="ShareName" HeaderText="Name" ItemStyle-CssClass="TAPad" />
                 <asp:BoundField DataField="OrigPrice" HeaderText="Price Orig" DataFormatString="{0:C2}"/>
                 <asp:BoundField DataField="LastPrice" HeaderText="Last" DataFormatString="{0:C2}"/>
+                <asp:BoundField DataField="PriceChange" HeaderText="Change" HtmlEncode="false" />
                 <asp:BoundField DataField="DateTimeLast" HeaderText="Last reported" />
             </Columns>
         </asp:GridView>    
@@ -118,7 +118,7 @@
             </tr>
             <tr class="row">
                 <td>
-                    - Colored price deltas in Watch List<br />
+                    
                 </td>
                 <td>
                     + Switched to nice fonts<br />
@@ -129,6 +129,7 @@
                     + Autorefresh<br />
                     + Add company names<br/>
                     + WatchList<br />
+                    + Colored price deltas in Watch List<br />
                 </td>
             </tr>
         </table>

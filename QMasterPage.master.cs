@@ -29,6 +29,7 @@ public partial class QMasterPage : System.Web.UI.MasterPage
         dt.Columns.Add("ShareName");
         dt.Columns.Add("OrigPrice");
         dt.Columns.Add("LastPrice");
+        dt.Columns.Add("PriceChange");
         dt.Columns.Add("DateTimeLast");
 
         foreach(LastShareData last in LastData)
@@ -38,11 +39,16 @@ public partial class QMasterPage : System.Web.UI.MasterPage
             if (item != null)
             {
                 DataRow row = dt.NewRow();
-                row["DateAdded"] = item.WatchDate;
+                DateTime DateAdded = Convert.ToDateTime(item.WatchDate);
+                DateTime DateNow = DateTime.UtcNow;
+                int age = (DateNow.Year - DateAdded.Year) * 12 + (DateNow.Month - DateAdded.Month);
+                row["DateAdded"] = String.Format("{0}<br/>{1} months", item.WatchDate, age);
                 row["Symbol"] = last.Symbol;
                 row["ShareName"] = last.ShareName;
                 row["OrigPrice"] = item.Price.ToString("C2");
                 row["LastPrice"] = last.LastPrice.ToString("C2");
+                row["PriceChange"] = FormatUtils.CombiCellStr(last.LastPrice - item.Price,
+                    100 * (last.LastPrice - item.Price) / item.Price);
                 row["DateTimeLast"] = last.RepDT.ToString();
 
                 dt.Rows.Add(row);
@@ -167,7 +173,10 @@ public partial class QMasterPage : System.Web.UI.MasterPage
 
         GetQuotes();
         GenerateView();
-        GenerateWatchList();
+        if (CurrUser.ShowWatchlist)
+        {
+            GenerateWatchList();
+        }
     }
 
     protected void GridView3_RowDataBound(object sender, GridViewRowEventArgs e)
@@ -186,6 +195,13 @@ public partial class QMasterPage : System.Web.UI.MasterPage
             FormatUtils.ColorizeCell(e.Row, 5);
             FormatUtils.ColorizeCell(e.Row, 6);
             FormatUtils.ColorizeCell(e.Row, 7);
+        }
+    }
+    protected void gvWatch_RowDataBound(object sender, GridViewRowEventArgs e)
+    {
+        if (e.Row.RowType == DataControlRowType.DataRow)
+        {
+            FormatUtils.ColorizeCell(e.Row, 5);
         }
     }
 }

@@ -113,6 +113,7 @@ public class Portfolio
             AddPurchase("HLF", 50, 54.27F); // 07/22/2014
             AddPurchase("BA", 10, 121.07F); // 08/04/2014
             AddPurchase("MIDD", 15, 72.24F); // 08/04/2014
+            AddPurchase("CSCO", 50, 25.21F); // 08/12/2014
             AddPurchase("RBL", 40, 25.96F); // 06/09/2014
             AddPurchase("RSXJ", 40, 35.76F); // 06/09/2014
 
@@ -158,6 +159,7 @@ public class Portfolio
             AddWatch("GLNCY", 10.36F, "01/14/2014");
             AddWatch("RBL", 26.57F, "01/21/2014");
             AddWatch("RSXJ", 39.94F, "01/21/2014");
+            AddWatch("MHG", 12.56F, "08/08/2014");
         }
     }
 }
