@@ -10,6 +10,7 @@ using System.Text;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Xml.Linq;
 
 
 public partial class QMasterPage : System.Web.UI.MasterPage
@@ -168,8 +169,12 @@ public partial class QMasterPage : System.Web.UI.MasterPage
         Timer1.Interval = Convert.ToInt32((NextUpdateDT - RequestDT).TotalMilliseconds);
 
         Portfolio = new Portfolio();
-        Portfolio.ReadPortfolio(CurrUser);
-        Portfolio.ReadWatch(CurrUser);
+
+        string xmlPath = Server.MapPath("/portfolio.xml");
+        XDocument xmlDoc = XDocument.Load(xmlPath);
+        
+        Portfolio.ReadPortfolio(CurrUser, xmlDoc);
+        Portfolio.ReadWatch(CurrUser, xmlDoc);
 
         GetQuotes();
         GenerateView();
